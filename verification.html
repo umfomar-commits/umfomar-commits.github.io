@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>صفحة التحقق</title>
+    <style>
+        body {
+            background-color: #0a2540; /* أزرق غامق */
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        #myBar {
+            width: 0%;
+            height: 30px;
+            background-color: red;
+            color: white;
+            line-height: 30px;
+            margin-bottom: 10px;
+        }
+
+        #errorMessage {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .gems-container {
+            margin: 20px 0;
+        }
+
+        #gems {
+            font-size: 40px;
+            color: #38bdf8;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #38bdf8;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0ea5e9;
+        }
+
+        .ad-space {
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px dashed #555;
+            background: #16213e;
+        }
+    </style>
+</head>
+<body>
+
+<h2>جاري معالجة طلبك...</h2>
+
+<div id="myBar"></div>
+<p id="progressLabel">0%</p>
+
+<div id="errorMessage">
+    <p>⚠️ فشل التحقق التلقائي! التحقق البشري مطلوب.</p>
+
+    <!-- لعبة الجواهر -->
+    <div class="gems-container">
+        <h3>💎 عدد الجواهر</h3>
+        <div id="gems">---</div>
+        <button onclick="generateGems()">احصل على الجواهر</button>
+    </div>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9537054028664592"
+     crossorigin="anonymous"></script>
+    <div class="ad-space">
+        <p>إعلان هنا</p>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9537054028664592"
+     crossorigin="anonymous"></script>
+    </div>
+</div>
+
+<script>
+    // عداد التقدم
+    var i = 0;
+    function move() {
+        if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("myBar");
+            var label = document.getElementById("progressLabel");
+            var width = 1;
+            var id = setInterval(frame, 50); 
+            function frame() {
+                if (width >= 99) {
+                    clearInterval(id);
+                    document.getElementById("errorMessage").style.display = "block";
+                    label.innerHTML = "99% (فشل)";
+                } else {
+                    width++;
+                    elem.style.width = width + "%";
+                    label.innerHTML = width + "%";
+                }
+            }
+        }
+    }
+    window.onload = move;
+
+    // لعبة الجواهر
+    function generateGems() {
+        const gems = Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
+        document.getElementById("gems").innerText = gems + " 💎";
+    }
+</script>
+
+</body>
+</html>
